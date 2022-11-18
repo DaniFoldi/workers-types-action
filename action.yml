@@ -1,11 +1,23 @@
 name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+description: 'Make sure your Cloudflare Worker\'s Compatibility Date is the same in wrangler.toml and tsconfig.json'
+author: 'DaniFoldi'
 inputs:
-  milliseconds: # change this
-    required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+  basedir:
+    required: false
+    description: Resolve both files relative to this directory
+    default: '.'
+  tsconfig-json:
+    required: false
+    description: Parse this file as your tsconfig
+    default: 'tsconfig.json'
+  wrangler-toml:
+    required: false
+    description: Parse this file as your wrangler.toml
+    default: 'wrangler.toml'
+  mode:
+    required: false
+    description: Action to take if dates/flags are out of sync (edit-old, edit-wrangler, edit-tsconfig, fail)
+    default: 'edit-old'
 runs:
   using: 'node16'
   main: 'dist/index.js'
